@@ -36,33 +36,35 @@ const iconMap = {
 
 export function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-primary text-primary-foreground shadow-sm">
-      <div className="flex h-16 items-center gap-4 px-4 lg:px-6">
+    <header className="sticky top-0 z-40 border-b border-border bg-white text-slate-900 shadow-sm">
+      <div className="flex h-20 items-center gap-4 px-4 lg:px-6">
         <Button
           variant="ghost"
           size="icon"
-          className="text-primary-foreground hover:bg-secondary lg:hidden"
+          className="text-slate-900 hover:bg-slate-100 lg:hidden"
           onClick={onMenuClick}
           aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
         </Button>
 
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent font-bold text-accent-foreground">
-            VIT
-          </div>
-          <div>
-            <p className="text-xs font-medium uppercase tracking-wider opacity-80">
+        <div className="flex min-w-[280px] items-center gap-4 px-1 py-2 sm:min-w-[340px]">
+          <img
+            src="/vit chennai logo.png"
+            alt="VIT Chennai logo"
+            className="h-16 w-auto max-w-[150px] object-contain"
+          />
+          <div className="hidden sm:block">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
               VIT Chennai
             </p>
-            <h1 className="text-lg font-semibold leading-tight">Freshers Portal</h1>
+            <h1 className="text-lg font-semibold leading-tight text-slate-900">Freshers Portal</h1>
           </div>
         </div>
 
         <div className="ml-auto hidden text-right text-sm md:block">
-          <p className="font-medium">Academic Year 2026–27</p>
-          <p className="text-xs opacity-80">Student Onboarding Information</p>
+          <p className="font-medium text-slate-700">Academic Year 2026–27</p>
+          <p className="text-xs text-slate-500">Student Onboarding Information</p>
         </div>
       </div>
     </header>
@@ -104,12 +106,14 @@ function NavLink({
 
 export function Sidebar() {
   return (
-    <aside className="hidden w-64 shrink-0 bg-primary lg:block">
-      <nav className="flex flex-col gap-1 p-4">
-        {NAV_ITEMS.map((item) => (
-          <NavLink key={item.href} {...item} />
-        ))}
-      </nav>
+    <aside className="hidden lg:block">
+      <div className="fixed left-0 top-20 h-[calc(100vh-5rem)] w-64 overflow-y-auto bg-primary">
+        <nav className="flex flex-col gap-1 p-4 pt-6">
+          {NAV_ITEMS.map((item) => (
+            <NavLink key={item.href} {...item} />
+          ))}
+        </nav>
+      </div>
     </aside>
   );
 }
@@ -156,9 +160,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen flex-col">
       <Header onMenuClick={() => setDrawerOpen(true)} />
       <MobileDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden">
+        <div className="hidden w-64 shrink-0 lg:block" />
         <Sidebar />
-        <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">{children}</main>
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   );

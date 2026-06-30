@@ -203,28 +203,7 @@ export default function MainInductionPage() {
         ))}
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Need help?</CardTitle>
-          <CardDescription>Use the official VIT Chennai admission and campus links for more details.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-2">
-            {quickLinks.map((link) => (
-              <Link
-                key={`${link.label}-secondary`}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 rounded-md bg-secondary px-3 py-2 text-sm font-medium text-secondary-foreground hover:bg-primary"
-              >
-                {link.label}
-                <ExternalLink className="h-4 w-4" />
-              </Link>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      
     </div>
   );
 }
